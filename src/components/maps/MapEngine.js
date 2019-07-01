@@ -1,10 +1,12 @@
 import { Observable } from 'rxjs';
 import { MAP_LOADED_WITH_ERRORS, MAP_LOADED_SUCCESSFUL } from './MapConstants'
 import { MAP_URL } from './MapConstants';
+import RegisteredMaps from './RegisteredMaps';
 
 let maps = undefined;
 let observer = undefined;
 let functionsToNotify = [];
+let mapRegister = new RegisteredMaps();
 
 function notifyFunctions() {
     observer = new Observable(observer => observer.next(maps));
@@ -58,9 +60,9 @@ export function buildMap(Component, mapKey) {
         try {
             getMaps((maps) => {
                 let map = new maps.Map(Component);
-                console.log(map);
                 map.setZoom(14);
                 map.setCenter({ lat:  -23.5678096, lng: -46.718843 });
+                mapRegister.registerMap(mapKey, map);
                 resolve(map);
             });
         } catch (e) {
@@ -83,4 +85,10 @@ export function buildAutocomplete(Input) {
             reject(`Não foi possível criar um componente de autocomplete. Motivo: ${e.message}`);
         }
     });
+}
+
+export function boundAutocompleteToMap(autocomplete, mapKey) {
+    mapRegister
+        .getRegisteredMaps(mapKey)
+        .then(map => autocomplete.bindTo('bounds', map));
 }
