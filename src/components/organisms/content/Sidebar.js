@@ -5,7 +5,7 @@ const SidebarDiv = styled.div`
     position: absolute;
     z-index: 1;
     width: 300px;
-    background-color: #ddd;
+    background-color: rgb(210, 210, 210, 0.1);
     height: 80vh;
     top: 10vh;
     left: 5vw;

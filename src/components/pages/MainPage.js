@@ -2,6 +2,7 @@ import React from 'react';
 import MainTemplate from '../templates/Main';
 import Map from '../organisms/maps/Map';
 import AutocompleteInput from '../organisms/autocomplete/AutocompleteInput';
+import SearchResultPanel from '../organisms/autocomplete/SearchResultsPanel';
 import LoadingPanel from '../molecules/extras/LoadingPanel';
 import LoadingIcon from '../atoms/extras/LoadingIcon';
 import rotating from '../../behaviors/animations/rotating';
@@ -48,7 +49,7 @@ export default class MainPage extends React.Component {
         }
         return (
             <MainTemplate
-                sidebar={<AutocompleteInput/>}
+                sidebar={[<AutocompleteInput key="autocomplete"/>,<SearchResultPanel key="results"/>]}
                 content={<Map/>}
             />
         );

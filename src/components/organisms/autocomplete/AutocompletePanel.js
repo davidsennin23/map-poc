@@ -10,29 +10,19 @@ const Panel = styled.div`
     align-items: center;
     padding: 0 10px;
     box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 10px;
 `;
 
-// const PanelHead = styled.div`
-//     position: relative;
-//     margin: auto;
-//     padding: 5px;
-//     background-color: #fff;
-// `;
 
 const PanelInput = styled.div`
     background-color: #999;
-    flex-grow: 8;
-`;
-const PanelButton = styled.div`
-    background-coler: #fff;
-    flex-grow: 2;
+    width: 100%;
 `;
 
-const AutocompletePanel = ({header, input}) => 
+const AutocompletePanel = ({input}) => 
     <Panel>
-        {/* <PanelHead>{header}</PanelHead> */}
         <PanelInput>{input}</PanelInput>
-        <PanelButton><button></button></PanelButton>
     </Panel>
 
 export default AutocompletePanel;
